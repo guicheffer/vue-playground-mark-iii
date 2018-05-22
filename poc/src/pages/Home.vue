@@ -13,6 +13,9 @@ export default {
     return {
       msg: 'Welcome to Your Vue.js App'
     }
+  },
+  title () {
+    return 'Bem-vindo'
   }
 }
 </script>

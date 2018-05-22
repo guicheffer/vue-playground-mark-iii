@@ -1,7 +1,11 @@
 import Vue from 'vue'
 import App from './App.vue'
 
+import titleMixin from './util/title'
 import { createRouter } from './router'
+
+// mixin for handling title
+Vue.mixin(titleMixin)
 
 export function createApp() {
   const router = createRouter()
