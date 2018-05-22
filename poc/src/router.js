@@ -3,6 +3,7 @@ import Router from 'vue-router'
 
 import Alisson from './pages/Alisson.vue'
 import Home from './pages/Home.vue'
+import Listing from './pages/Listing.vue'
 
 export function createRouter() {
   Vue.use(Router)
@@ -19,6 +20,11 @@ export function createRouter() {
         path: '/alisson',
         name: 'alisson',
         component: Alisson
+      },
+      {
+        path: '/imovel/:listing+',
+        name: 'listing',
+        component: Listing
       },
     ]
   })

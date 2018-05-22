@@ -27,8 +27,17 @@ export default context => {
         return reject({ code: 404 })
       }
 
-      context.state = store.state
-      resolve(app)
+      const promises = matchedComponents.map(({ asyncData }) => {
+        return asyncData && asyncData({
+          store,
+          route: router.currentRoute
+        })
+      })
+
+      Promise.all(promises).then(() => {
+        context.state = store.state
+        resolve(app)
+      }).catch(reject)
 
       // Call fetchData hooks on components matched by the route.
       // A preFetch hook dispatches a store action and returns a Promise,
