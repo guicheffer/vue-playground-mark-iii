@@ -7,7 +7,7 @@ import { createApp } from './app'
 // return a Promise that resolves to the app instance.
 export default context => {
   return new Promise((resolve, reject) => {
-    const { app, router } = createApp()
+    const { app, router, store } = createApp()
 
     const { url } = context
     const { fullPath } = router.resolve(url).route
@@ -27,6 +27,7 @@ export default context => {
         return reject({ code: 404 })
       }
 
+      context.state = store.state
       resolve(app)
 
       // Call fetchData hooks on components matched by the route.

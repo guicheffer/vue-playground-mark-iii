@@ -6,6 +6,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
+    "build": "npm run build:client && npm run build:server && node server.js",
     "build:client": "webpack --config ./build/webpack.client.js --progress",
     "build:server": "webpack --config ./build/webpack.server.js --progress"
   },
@@ -13,7 +14,8 @@
     "express": "^4.16.3",
     "vue": "^2.5.16",
     "vue-router": "^3.0.1",
-    "vue-server-renderer": "^2.5.16"
+    "vue-server-renderer": "^2.5.16",
+    "vuex": "^3.0.1"
   },
   "browserslist": [
     "> 1%",

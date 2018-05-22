@@ -15,7 +15,7 @@ export default {
     }
   },
   title () {
-    return 'Bem-vindo'
+    return this.$store.state.title
   }
 }
 </script>
