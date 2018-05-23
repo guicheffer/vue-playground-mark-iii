@@ -10,11 +10,8 @@
 
 <script>
 export default {
-  asyncData: ({ store }) => {
-    return Promise.resolve(store.commit('setTitle', 'Bem vindo ALISSON LINDAO!!!'))
-  },
-  title () {
-    return this.$store.state.title
+  meta: {
+    title: 'Alisson lindão',
   },
   methods: {
     changeAdjective () {

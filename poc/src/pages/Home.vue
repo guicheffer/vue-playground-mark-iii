@@ -14,11 +14,8 @@ export default {
       msg: 'Welcome to Your Vue.js App'
     }
   },
-  asyncData: ({ store }) => {
-    return Promise.resolve(store.commit('setTitle', 'Bem vindo!!!'))
+  meta: {
+    title: 'Bem vindo!',
   },
-  title () {
-    return this.$store.state.title
-  }
 }
 </script>

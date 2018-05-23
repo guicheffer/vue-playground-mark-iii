@@ -2,29 +2,22 @@ import axios from 'axios'
 
 export default {
   asyncData: ({ store, route }) => {
-    return axios.get(
-      `https://glue-api.vivareal.com/v1/listing${route.path}?includeFields=seo,recommendations,listing`// ,
-      // {
-      //   headers: {
-      //     'x-domain': 'www.vivareal.com.br',
-      //   }
-      // }
-    ).then(response => {
-      const data = response.data
+    return axios.get(`https://glue-api.vivareal.com/v1/listing${route.path}?includeFields=seo,recommendations,listing`)
+      .then(response => {
+        const data = response.data
 
-      store.commit('setPropertyData', data)
-      store.commit('setTitle', data.listing.title)
-    })
+        store.commit('setPropertyData', data)
+      })
   },
-  title () {
-    return this.$store.state.title
-  },
-  methods: {
-    changeAdjective () {
-      return Promise.resolve(this.$store.commit('setAdjective', 'gostosão'))
+  meta () {
+    return {
+      title: this.title
     }
   },
   computed: {
+    title () {
+      return this.$store.state.propertyData.seo.metaContent.metaTitle
+    },
     adjective () {
       return this.$store.state.adjective
     },

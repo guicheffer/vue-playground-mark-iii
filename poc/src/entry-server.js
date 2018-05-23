@@ -8,9 +8,11 @@ import { createApp } from './app'
 export default context => {
   return new Promise((resolve, reject) => {
     const { app, router, store } = createApp()
-
     const { url } = context
     const { fullPath } = router.resolve(url).route
+
+    const meta = app.$meta()
+    context.meta = meta
 
     if (fullPath !== url) {
       return reject({ url: fullPath })
