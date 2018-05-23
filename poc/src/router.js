@@ -22,7 +22,7 @@ export function createRouter() {
         component: Alisson
       },
       {
-        path: '/imovel/:listing+',
+        path: '/(imovel|imoveis-lancamento)/:listing+',
         name: 'listing',
         component: Listing
       },

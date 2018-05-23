@@ -4,12 +4,13 @@ const merge = require('webpack-merge')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 
+//simple resolve fn
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
 
 module.exports = {
-  // devtool: false,
+  // devtool: '#eval-source-map',
   output: {
     path: path.resolve(__dirname, '../dist'),
     publicPath: '/dist/',
@@ -19,7 +20,8 @@ module.exports = {
     extensions: ['.js', '.vue', '.json'],
     alias: {
       'public': path.resolve(__dirname, '../public'),
-      '@': resolve('src')
+      '@': resolve('src'),
+      '~': resolve('src/components')
     }
   },
   module: {
@@ -28,7 +30,7 @@ module.exports = {
       {
         test: /\.vue$/,
         loader: 'vue-loader',
-        options:{
+        options: {
           extractCSS: true,
           preserveWhitespace: false,
           postcss: [

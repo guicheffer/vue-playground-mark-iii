@@ -19,7 +19,7 @@ export function createStore () {
       },
       setPropertyData: (state, newPropertyData) => {
         Vue.set(state, 'propertyData', newPropertyData)
-      }
-    }
+      },
+    },
   })
 }

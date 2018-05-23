@@ -16,11 +16,6 @@ function createRenderer (bundle, options) {
   // https://github.com/vuejs/vue/blob/dev/packages/vue-server-renderer/README.md#why-use-bundlerenderer
   return createBundleRenderer(bundle, Object.assign(options, {
     template,
-    // for component caching
-    // cache: LRU({
-    //   max: 1000,
-    //   maxAge: 1000 * 60 * 15
-    // }),
     // this is only needed when vue-server-renderer is npm-linked
     basedir: resolve('./dist'),
     // recommended for performance
@@ -59,20 +54,7 @@ const serve = (path, cache) => express.static(resolve(path), {
 app.use('/dist', serve('./dist', true))
 app.use('/public', serve('./public', true))
 app.use('/manifest.json', serve('./manifest.json', true))
-// app.use('/service-worker.js', serve('./dist/service-worker.js'))
 
-// 1-second microcache.
-// https://www.nginx.com/blog/benefits-of-microcaching-nginx/
-// const microCache = LRU({
-//   max: 100,
-//   maxAge: 1000
-// })
-
-// since this app has no user-specific content, every page is micro-cacheable.
-// if your app involves user-specific content, you need to implement custom
-// logic to determine whether a request is cacheable based on its url and
-// headers.
-// const isCacheable = req => useMicroCache
 
 function render (req, res) {
   const s = Date.now()
@@ -93,21 +75,7 @@ function render (req, res) {
     }
   }
 
-  // const cacheable = isCacheable(req)
-  // if (cacheable) {
-  //   const hit = microCache.get(req.url)
-  //   if (hit) {
-  //     if (!isProd) {
-  //       console.log(`cache hit!`)
-  //     }
-  //     return res.end(hit)
-  //   }
-  // }
-
-  const context = {
-    // title: '[name]', // default title
-    url: req.url
-  }
+  const context = { url: req.url }
 
   renderer.renderToString(context, (err, html) => {
     if (err) {
@@ -116,21 +84,13 @@ function render (req, res) {
 
     res.end(html)
 
-    // if (cacheable) {
-    //   microCache.set(req.url, html)
-    // }
-
     console.log(`whole request: ${Date.now() - s}ms`)
   })
 }
-
-// app.get('*', isProd ? render : (req, res) => {
-//   readyPromise.then(() => render(req, res))
-// })
 
 app.get('*', render)
 
 const port = process.env.PORT || 8080
 app.listen(port, () => {
-  console.log(`server started at localhost:${port}`)
+  console.log(`🎉  server started at localhost:${port}`)
 })

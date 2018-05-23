@@ -11,11 +11,6 @@ const config = merge(base, {
   output: {
     filename: '[name].[hash].js'
   },
-  // resolve: {
-  //   alias: {
-  //     'create-api': './create-api-client.js'
-  //   }
-  // },
   plugins: [
     // strip dev-only code in Vue source
     new webpack.DefinePlugin({

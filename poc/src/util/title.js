@@ -11,7 +11,8 @@ const serverTitleMixin = {
   created () {
     const title = getTitle(this)
     if (title) {
-      this.$ssrContext.title = `Vue Mark III | ${title}`
+      console.log('# CREATED ON SERVER: ', title)
+      this.$ssrContext.title = title
     }
   }
 }
@@ -20,7 +21,8 @@ const clientTitleMixin = {
   mounted () {
     const title = getTitle(this)
     if (title) {
-      document.title = `Vue Mark III | ${title}`
+      console.log('# CREATED ON CLIENT: ', title)
+      document.title = title
     }
   }
 }
