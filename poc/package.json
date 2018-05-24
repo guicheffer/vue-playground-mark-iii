@@ -6,9 +6,11 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "build": "yarn build:client && yarn build:server",
-    "build:client": "NODE_ENV=production webpack --config ./build/webpack.client.js --progress",
-    "build:server": "NODE_ENV=production webpack --config ./build/webpack.server.js --progress",
+    "build": "yarn build:dev",
+    "build:dev": "yarn build:client && yarn build:server",
+    "build:prod": "NODE_ENV=production yarn build:client && NODE_ENV=production yarn build:server",
+    "build:client": "webpack --config ./build/webpack.client.js --progress",
+    "build:server": "webpack --config ./build/webpack.server.js --progress",
     "dev": "PORT=3000 node server.js"
   },
   "dependencies": {

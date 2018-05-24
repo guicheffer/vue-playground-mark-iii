@@ -4,13 +4,17 @@ const merge = require('webpack-merge')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 
+const isProd = process.env.NODE_ENV === 'production'
+
 //simple resolve fn
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
 
 module.exports = {
-  // devtool: '#eval-source-map',
+  devtool: isProd
+    ? false
+    : '#cheap-module-source-map',
   output: {
     path: path.resolve(__dirname, '../dist'),
     publicPath: '/dist/',
@@ -31,7 +35,7 @@ module.exports = {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: {
-          extractCSS: true,
+          extractCSS: isProd,
           preserveWhitespace: false,
           postcss: [
             require('autoprefixer')({
@@ -59,29 +63,29 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          use: 'css-loader?minimize',
-          fallback: 'vue-style-loader'
-        })
-        // use: isProd
-        //   ? ExtractTextPlugin.extract({
-        //       use: 'css-loader?minimize',
-        //       fallback: 'vue-style-loader'
-        //     })
-        //   : ['vue-style-loader', 'css-loader']
+        use: isProd
+          ? ExtractTextPlugin.extract({
+              use: 'css-loader?minimize',
+              fallback: 'vue-style-loader'
+            })
+          : ['vue-style-loader', 'css-loader']
       }
     ]
   },
   performance: {
     maxEntrypointSize: 300000,
-    hints: 'warning'
+    hints: isProd ? 'warning' : false
   },
-  plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-      compress: { warnings: false }
-    }),
-    new ExtractTextPlugin({
-      filename: 'common.[chunkhash].css'
-    })
-  ]
+  plugins: isProd
+    ? [
+        new webpack.optimize.UglifyJsPlugin({
+          compress: { warnings: false }
+        }),
+        new ExtractTextPlugin({
+          filename: 'common.[chunkhash].css'
+        })
+      ]
+    : [
+        new FriendlyErrorsPlugin()
+      ]
 }
