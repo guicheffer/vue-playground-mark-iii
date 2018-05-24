@@ -7,7 +7,8 @@ export function createStore () {
   return new Vuex.Store({
     state: {
       adjective: 'lindão',
-      propertyData: {}
+      propertyData: {},
+      seo: {}
     },
     mutations: {
       setAdjective: (state, newAdjective) => {
@@ -15,6 +16,9 @@ export function createStore () {
       },
       setPropertyData: (state, newPropertyData) => {
         Vue.set(state, 'propertyData', newPropertyData)
+      },
+      setSeo: (state, newSeo) => {
+        Vue.set(state, 'seo', newSeo)
       },
     },
   })

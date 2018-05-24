@@ -2,9 +2,9 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Meta from 'vue-meta'
 
-import Alisson from './pages/Alisson.vue'
-import Home from './pages/Home.vue'
-import Listing from './pages/Listing.vue'
+import Alisson from './pages/Alisson/Alisson.vue'
+import Home from './pages/Home/Home.vue'
+import Listing from './pages/Listing/Listing.vue'
 
 export function createRouter() {
   Vue.use(Router)

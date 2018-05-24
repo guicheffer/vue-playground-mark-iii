@@ -1,8 +1,35 @@
 <template>
   <div id="app">
-    <router-view class="view"></router-view>
+    <router-view> </router-view>
   </div>
 </template>
+
+<script>
+export default {
+  meta () {
+    const {
+      metaTitle: title,
+      metaDescription: description,
+    } = this.seo.metaContent || {
+      metaTitle: 'Bem vindo ao Viva',
+      metaDescription: 'Descrição do Site do Viva',
+    }
+
+    return {
+      title,
+      meta: [
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { name: 'description', content: description }
+      ],
+    }
+  },
+
+  computed: {
+    seo () { return this.$store.state.seo },
+  }
+}
+</script>
 
 <style lang="scss">
 #app {

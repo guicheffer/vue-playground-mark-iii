@@ -1,7 +1,7 @@
 import Vue from 'vue'
 
 import { createApp } from './app'
-import ProgressBar from '~/ProgressBar.vue'
+import ProgressBar from '~/ProgressBar/ProgressBar.vue'
 
 // global progress bar
 const bar = Vue.prototype.$bar = new Vue(ProgressBar).$mount()
@@ -29,10 +29,12 @@ if (window.__INITIAL_STATE__) {
   store.replaceState(window.__INITIAL_STATE__)
 }
 
+//bar start and next on route
 router.beforeEach((to, from, next) => {
   bar.start()
   next()
 })
+//bar finish
 router.afterEach(() => bar.finish())
 
 // wait until router has resolved all async before hooks

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img src="../assets/logo.png">
+    <img src="../../assets/logo.png">
     <h1>{{ msg }}</h1>
     <router-link to="/alisson">Alisson</router-link>
   </div>
@@ -9,13 +9,9 @@
 <script>
 export default {
   name: 'app',
+
   data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
-    }
-  },
-  meta: {
-    title: 'Bem vindo!',
+    return { msg: 'poc vue' }
   },
 }
 </script>
