@@ -6,9 +6,10 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "build": "npm run build:client && npm run build:server && PORT=3000 node server.js",
+    "build": "npm run build:client && npm run build:server && yarn serve",
     "build:client": "NODE_ENV=development webpack --config ./build/webpack.client.js --progress",
-    "build:server": "NODE_ENV=development webpack --config ./build/webpack.server.js --progress"
+    "build:server": "NODE_ENV=development webpack --config ./build/webpack.server.js --progress",
+    "serve": "PORT=3000 node server.js"
   },
   "dependencies": {
     "axios": "^0.18.0",

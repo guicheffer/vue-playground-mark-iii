@@ -16,18 +16,18 @@ export function createRouter() {
       {
         path: '/',
         name: 'home',
-        component: Home
+        component: Home,
       },
       {
         path: '/alisson',
         name: 'alisson',
-        component: Alisson
+        component: Alisson,
       },
       {
         path: '/(imovel|imoveis-lancamento)/:listing+',
         name: 'listing',
-        component: Listing
+        component: Listing,
       },
-    ]
+    ],
   })
 }
