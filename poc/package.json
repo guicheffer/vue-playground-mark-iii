@@ -6,15 +6,16 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "build": "npm run build:client && npm run build:server && yarn serve",
-    "build:client": "NODE_ENV=development webpack --config ./build/webpack.client.js --progress",
-    "build:server": "NODE_ENV=development webpack --config ./build/webpack.server.js --progress",
-    "serve": "PORT=3000 node server.js"
+    "build": "yarn build:client && yarn build:server",
+    "build:client": "NODE_ENV=production webpack --config ./build/webpack.client.js --progress",
+    "build:server": "NODE_ENV=production webpack --config ./build/webpack.server.js --progress",
+    "dev": "PORT=3000 node server.js"
   },
   "dependencies": {
     "axios": "^0.18.0",
     "express": "^4.16.3",
     "lodash": "^4.17.10",
+    "memory-fs": "^0.4.1",
     "vue": "^2.5.16",
     "vue-meta": "^1.5.0",
     "vue-router": "^3.0.1",
@@ -43,9 +44,11 @@
     "url-loader": "^1.0.1",
     "vue-loader": "^13.0.5",
     "vue-template-compiler": "^2.4.4",
-    "webpack": "^3.6.0",
+    "webpack-dev-middleware": "^1.10.1",
     "webpack-dev-server": "^2.9.1",
+    "webpack-hot-middleware": "^2.17.1",
     "webpack-merge": "^4.1.2",
-    "webpack-node-externals": "^1.7.2"
+    "webpack-node-externals": "^1.7.2",
+    "webpack": "^3.6.0"
   }
 }

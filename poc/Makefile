@@ -10,6 +10,6 @@ help:
 # ------------------------------------------------------------------------------------ #
 
 serve: ## server locally on port 3000
-	$(PKG) serve
+	$(PKG) dev
 
 server: serve
